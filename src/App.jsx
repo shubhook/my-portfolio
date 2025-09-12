@@ -277,7 +277,7 @@ const Portfolio = () => {
               © 2024 Shubham Khakha
             </div>
             <div className="footer-text">
-              Built with React & Tailwind CSS
+              Built with ❤️
             </div>
           </div>
         </div>
