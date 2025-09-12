@@ -33,7 +33,8 @@ const Portfolio = () => {
 
   const skills = [
     "JavaScript", "Node.js", "React", "Express.js", 
-    "MongoDB", "Git/GitHub", "REST APIs", "AI Integration"
+    "MongoDB", "Git/GitHub", "REST APIs", "AI Integration",
+    "Rust", "C/C++", "TypeScript"
   ];
 
   const ScrollToSection = ({ targetId, children, className = "" }) => {
