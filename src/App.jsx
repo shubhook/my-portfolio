@@ -58,10 +58,10 @@ const Portfolio = () => {
 
   const skills = {
     languages: ["JavaScript", "TypeScript", "Rust", "C/C++", "Python", "Go"],
-    frameworks: ["Node.js", "React.js", "Express.js", "Next.js"],
-    databases: ["MongoDB", "PostgreSQL", "Redis"],
-    tools: ["Git/GitHub", "Docker", "AWS", "Linux"],
-    concepts: ["REST APIs", "GraphQL", "AI/ML Integration", "System Design"]
+    frameworks: ["Node.js", "React.js", "Express.js"],
+    databases: ["MongoDB"],
+    tools: ["Git/GitHub", "Linux"],
+    concepts: ["REST APIs",  "AI/ML Integration"]
   };
 
   const stats = {
@@ -88,7 +88,7 @@ const Portfolio = () => {
       <nav className={`nav ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container">
           <div className="nav-content">
-            <div className="nav-brand">shubham.dev</div>
+            <div className="nav-brand">khakha.dev</div>
             <div className="nav-links">
               <ScrollToSection targetId="about" className="nav-link">
                 about
