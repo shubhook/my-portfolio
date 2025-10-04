@@ -48,7 +48,7 @@ const Portfolio = () => {
         "Real-time project matching engine"
       ],
       github: "https://github.com/shubhook/skillsync.ai",
-      demo: "https://skillsync.demo",
+      demo: "https://skillsync-ai-one.vercel.app",
       status: "/* STATUS: ACTIVE_DEVELOPMENT */",
       year: "2024",
       lines: "~2.3k",
