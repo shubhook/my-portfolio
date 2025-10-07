@@ -1,439 +1,490 @@
-import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, Mail, Linkedin, ArrowUpRight, MapPin, Clock, Twitter, Terminal, Code, Coffee } from 'lucide-react';
+import React, { useState } from 'react';
+import { Github, Mail, Linkedin, Twitter, ExternalLink, Moon, Sun } from 'lucide-react';
 
 const Portfolio = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [terminalText, setTerminalText] = useState('');
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const [darkMode, setDarkMode] = useState(true);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const text = 'Loading developer profile...';
-    let i = 0;
-    const typeWriter = () => {
-      if (i < text.length) {
-        setTerminalText(text.slice(0, i + 1));
-        i++;
-        setTimeout(typeWriter, 100);
-      }
-    };
-    typeWriter();
-  }, []);
+  const theme = darkMode ? {
+    bg: '#0a0a0a',
+    text: '#e8e8e8',
+    textMuted: '#888888',
+    link: '#e8e8e8',
+    linkHover: '#ffffff',
+    hoverBg: '#1a1a1a',
+    border: '#333333',
+    cardBg: '#111111',
+    badgeBg: '#1a1a1a'
+  } : {
+    bg: '#ffffff',
+    text: '#1a1a1a',
+    textMuted: '#666666',
+    link: '#1a1a1a',
+    linkHover: '#000000',
+    hoverBg: '#f5f5f5',
+    border: '#e0e0e0',
+    cardBg: '#fafafa',
+    badgeBg: '#f0f0f0'
+  };
 
   const projects = [
     {
       title: "skillsync.ai",
-      description: "An intelligent platform that connects developers with curated projects matching their tech stack. Implements advanced ML algorithms using Google Gemini AI for semantic project matching and developer skill profiling.",
-      tech: ["Node.js", "Express.js", "Google Gemini AI", "JavaScript ES6+", "REST API", "MongoDB"],
-      features: [
-        "AI-powered semantic project recommendations",
-        "Tech stack compatibility matrix algorithm", 
-        "Automated project difficulty assessment",
-        "Developer skill gap analysis",
-        "Real-time project matching engine"
-      ],
+      description: "Platform matching developers with projects using ML. Built RESTful API handling 1000+ req/min with Node.js/Express. Integrated Google Gemini AI for semantic analysis. MongoDB schema with indexed queries averaging 50ms response time.",
+      tech: ["Node.js", "Express", "MongoDB", "Google Gemini AI", "REST API"],
       github: "https://github.com/shubhook/skillsync.ai",
-      demo: "https://skillsync-ai-one.vercel.app",
-      status: "/* STATUS: ACTIVE_DEVELOPMENT */",
-      year: "2024",
-      lines: "~2.3k",
-      commits: "127"
+      demo: "https://skillsync-ai-one.vercel.app"
     }
   ];
 
   const skills = {
-    languages: ["JavaScript", "TypeScript", "Rust", "C/C++", "Python", "Go"],
-    frameworks: ["Node.js", "React.js", "Express.js"],
-    databases: ["MongoDB"],
-    tools: ["Git/GitHub", "Linux"],
-    concepts: ["REST APIs",  "AI/ML Integration"]
-  };
-
-  const stats = {
-    commits: "1,247",
-    projects: "23",
-    coffees: "∞",
-    uptime: "99.9%"
-  };
-
-  const ScrollToSection = ({ targetId, children, className = "" }) => {
-    const handleClick = () => {
-      document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-    };
-    return (
-      <button onClick={handleClick} className={`${className}`}>
-        {children}
-      </button>
-    );
+    "Backend": ["Node.js", "Express", "REST APIs"],
+    "Databases": ["MongoDB"],
+    "Languages": ["JavaScript", "TypeScript", "Python", "C/C++", "Rust", "Go"],
+    "Tools": ["Git", "Linux"]
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Navigation */}
-      <nav className={`nav ${isScrolled ? 'scrolled' : ''}`}>
-        <div className="container">
-          <div className="nav-content">
-            <div className="nav-brand">khakha.dev</div>
-            <div className="nav-links">
-              <ScrollToSection targetId="about" className="nav-link">
-                about
-              </ScrollToSection>
-              <ScrollToSection targetId="projects" className="nav-link">
-                projects
-              </ScrollToSection>
-              <ScrollToSection targetId="contact" className="nav-link">
-                contact
-              </ScrollToSection>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div style={{
+      minHeight: '100vh',
+      background: theme.bg,
+      color: theme.text,
+      transition: 'background 0.2s, color 0.2s',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+      fontSize: '16px',
+      lineHeight: '1.6',
+      paddingBottom: '100px'
+    }}>
+      <div style={{
+        maxWidth: '680px',
+        margin: '0 auto',
+        padding: '60px 24px'
+      }}>
+        {/* About */}
+        <section style={{ marginBottom: '60px' }}>
+          <span style={{ 
+            display: 'inline-block',
+            background: theme.badgeBg,
+            border: `1px solid ${theme.border}`,
+            borderRadius: '4px',
+            padding: '4px 10px',
+            fontSize: '12px',
+            color: theme.textMuted,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            marginBottom: '20px'
+          }}>
+            About
+          </span>
+          <h1 style={{ 
+            fontSize: '32px', 
+            fontWeight: 600, 
+            margin: '0 0 20px 0',
+            letterSpacing: '-0.02em'
+          }}>
+            Shubham Khakha
+          </h1>
+          <p style={{ 
+            color: theme.textMuted, 
+            margin: 0,
+            textAlign: 'justify',
+            fontSize: '15px'
+          }}>
+            Building scalable backend systems and APIs. I focus on distributed systems, databases, and performance optimization. Currently exploring AI integration in production environments and working on developer tools that solve real problems.
+          </p>
+        </section>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="container">
-          <div style={{ marginBottom: '32px' }}>
-            <div className="code-block">
-              <span style={{ color: '#7d8590' }}>$ cat /dev/developer | grep name</span><br/>
-              <span style={{ color: '#00ff41' }}>{terminalText}</span><span className="cursor"></span>
-            </div>
-          </div>
-
-          <div>
-            <h1 className="hero-title">Shubham Khakha</h1>
-            
-            <div className="hero-meta">
-              <div className="hero-meta-item">
-                <MapPin size={14} />
-                <span>location: "Guwahati, IN"</span>
-              </div>
-              <div className="hero-meta-item">
-                <Clock size={14} />
-                <span>timezone: UTC+5:30</span>
-              </div>
-              <div className="hero-meta-item">
-                <Terminal size={14} />
-                <span>uptime: {Math.floor((currentTime - new Date('2020-01-01')) / (1000 * 60 * 60 * 24))} days</span>
-              </div>
-            </div>
-            
-            <div className="hero-description">
-              <p className="text-large">
-                <code>const developer = new FullStackEngineer()</code><br/>
-                Passionate about building intelligent web applications that solve real-world problems. 
-                Currently architecting AI-powered platforms and exploring the intersection of web development and machine learning.
-              </p>
-              
-              <p className="text-muted">
-                <code>// Specializing in:</code><br/>
-                → Building scalable backend systems with Node.js<br/>
-                → Integrating AI/ML models into web applications<br/>
-                → Creating developer tools that enhance productivity<br/>
-                → Contributing to open-source projects when {"{coffee && time}"}
-              </p>
-              
-              {/* Stats */}
-              <div style={{ display: 'flex', gap: '24px', marginTop: '24px', flexWrap: 'wrap' }}>
-                {Object.entries(stats).map(([key, value]) => (
-                  <div key={key} style={{ 
-                    fontSize: '12px', 
-                    color: '#7d8590',
-                    fontFamily: 'JetBrains Mono, monospace',
-                    padding: '4px 8px',
-                    background: '#161b22',
-                    borderRadius: '4px',
-                    border: '1px solid #30363d'
-                  }}>
-                    <span style={{ color: '#58a6ff' }}>{key}</span>: <span style={{ color: '#00ff41' }}>{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+        {/* Projects */}
+        <section style={{ marginBottom: '60px' }}>
+          <span style={{ 
+            display: 'inline-block',
+            background: theme.badgeBg,
+            border: `1px solid ${theme.border}`,
+            borderRadius: '4px',
+            padding: '4px 10px',
+            fontSize: '12px',
+            color: theme.textMuted,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            marginBottom: '24px'
+          }}>
+            Projects
+          </span>
           
-          <div className="btn-group">
-            <a href="https://github.com/shubhook" className="btn btn-primary">
-              <Github size={14} />
-              git clone portfolio
-            </a>
-            <a href="https://www.linkedin.com/in/shubham-khakha/" className="btn btn-secondary">
-              <Linkedin size={14} />
-              connect --professional
-            </a>
-            <a href="mailto:khakhashubham@gmail.com" className="btn btn-secondary">
-              <Mail size={14} />
-              send --message
-            </a>
-          </div>
-        </div>
-      </section>
+          {projects.map((project, idx) => (
+            <div 
+              key={idx}
+              style={{
+                background: theme.cardBg,
+                border: `1px solid ${theme.border}`,
+                borderRadius: '8px',
+                padding: '24px',
+                marginBottom: '20px'
+              }}
+            >
+              <h3 style={{ 
+                fontSize: '18px', 
+                fontWeight: 600,
+                margin: '0 0 12px 0'
+              }}>
+                {project.title}
+              </h3>
+              
+              <p style={{ 
+                color: theme.textMuted, 
+                margin: '0 0 16px 0',
+                fontSize: '15px',
+                lineHeight: '1.6',
+                textAlign: 'justify'
+              }}>
+                {project.description}
+              </p>
 
-      {/* About Section */}
-      <section id="about" className="section">
-        <div className="container">
-          <div className="section-small">
-            <h2 style={{ marginBottom: '20px' }}>About Me</h2>
-            <div style={{ marginBottom: '32px' }}>
-              <p className="text-large" style={{ marginBottom: '20px' }}>
-                <code>function getPassion() {"{"} return "building awesome stuff"; {"}"}</code><br/><br/>
-                I'm a full-stack developer who believes that the best code is not just functional, 
-                but elegant, maintainable, and solves real problems. My journey began with a simple 
-                "Hello, World!" and has evolved into architecting complex systems that millions could use.
-              </p>
-              
-              <p className="text-muted" style={{ marginBottom: '20px' }}>
-                Currently deep-diving into <strong>SkillSync.ai</strong> - a platform that uses 
-                machine learning to intelligently match developers with projects. It's like Tinder, 
-                but for code and way more useful. The system analyzes tech stacks, project complexity, 
-                and developer preferences to create perfect matches.
-              </p>
-              
-              <p className="text-muted">
-                When I'm not debugging at 3 AM (which happens more often than I'd like to admit), 
-                you'll find me exploring new technologies, contributing to open-source, or explaining 
-                why semicolons in JavaScript are actually important (fight me).
-              </p>
-              
-              <div className="code-block" style={{ marginTop: '24px' }}>
-                <code style={{ color: '#7d8590' }}>// My development philosophy:</code><br/>
-                <code style={{ color: '#f85149' }}>if</code> <code>(problem.exists()) {"{"}</code><br/>
-                &nbsp;&nbsp;<code style={{ color: '#00ff41' }}>code.elegant_solution();</code><br/>
-                <code>{"}"} </code><code style={{ color: '#f85149' }}>else</code> <code>{"{"}</code><br/>
-                &nbsp;&nbsp;<code style={{ color: '#7d8590' }}>// Find a problem worth solving</code><br/>
-                <code>{"}"}</code>
-              </div>
-            </div>
-          </div>
-          
-          <div>
-            <h3 style={{ marginBottom: '20px' }}>Tech Stack</h3>
-            {Object.entries(skills).map(([category, techs]) => (
-              <div key={category} style={{ marginBottom: '20px' }}>
-                <h4 style={{ 
-                  fontSize: '14px', 
-                  color: '#58a6ff', 
-                  marginBottom: '12px',
-                  textTransform: 'capitalize'
+              {/* Tech Stack */}
+              <div style={{ marginBottom: '16px' }}>
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '8px'
                 }}>
-                  {category.replace('_', ' ')}
-                </h4>
-                <div className="skills-grid">
-                  {techs.map((skill, index) => (
-                    <span key={index} className="skill-badge">
-                      {skill}
+                  {project.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        background: theme.badgeBg,
+                        border: `1px solid ${theme.border}`,
+                        borderRadius: '4px',
+                        padding: '4px 10px',
+                        fontSize: '13px',
+                        color: theme.textMuted,
+                        fontWeight: 500
+                      }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Links */}
+              <div style={{
+                display: 'flex',
+                gap: '16px',
+                paddingTop: '16px',
+                borderTop: `1px solid ${theme.border}`
+              }}>
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: theme.text,
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    transition: 'opacity 0.2s',
+                    opacity: 0.8
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.8'}
+                >
+                  <Github size={16} />
+                  Source Code
+                </a>
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: theme.text,
+                    textDecoration: 'none',
+                    fontSize: '14px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    transition: 'opacity 0.2s',
+                    opacity: 0.8
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+                  onMouseLeave={(e) => e.currentTarget.style.opacity = '0.8'}
+                >
+                  <ExternalLink size={16} />
+                  Live Demo
+                </a>
+              </div>
+            </div>
+          ))}
+        </section>
+
+        {/* Stack */}
+        <section style={{ marginBottom: '60px' }}>
+          <span style={{ 
+            display: 'inline-block',
+            background: theme.badgeBg,
+            border: `1px solid ${theme.border}`,
+            borderRadius: '4px',
+            padding: '4px 10px',
+            fontSize: '12px',
+            color: theme.textMuted,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            marginBottom: '24px'
+          }}>
+            Tech Stack
+          </span>
+          
+          <div style={{
+            background: theme.cardBg,
+            border: `1px solid ${theme.border}`,
+            borderRadius: '8px',
+            padding: '24px'
+          }}>
+            {Object.entries(skills).map(([category, techs], idx) => (
+              <div key={category} style={{ marginBottom: idx === Object.entries(skills).length - 1 ? '0' : '20px' }}>
+                <h3 style={{
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  color: theme.textMuted,
+                  margin: '0 0 10px 0',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}>
+                  {category}
+                </h3>
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '8px'
+                }}>
+                  {techs.map((tech, i) => (
+                    <span
+                      key={i}
+                      style={{
+                        background: theme.badgeBg,
+                        border: `1px solid ${theme.border}`,
+                        borderRadius: '4px',
+                        padding: '4px 10px',
+                        fontSize: '13px',
+                        color: theme.text,
+                        fontWeight: 500
+                      }}
+                    >
+                      {tech}
                     </span>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="section">
-        <div className="container">
-          <div className="section-header">
-            <h2 style={{ marginBottom: '12px' }}>Featured Projects</h2>
-            <p className="text-muted">Some things I've built that don't completely suck</p>
-          </div>
-          
-          <div>
-            {projects.map((project, index) => (
-              <article key={index} className="card">
-                <header className="card-header">
-                  <div className="card-title">
-                    <h3>
-                      <Terminal size={16} style={{ display: 'inline', marginRight: '8px', color: '#58a6ff' }} />
-                      {project.title}
-                    </h3>
-                    <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                      <span className="card-year">{project.year}</span>
-                      <span style={{ 
-                        fontSize: '11px', 
-                        color: '#7d8590',
-                        padding: '4px 8px',
-                        background: '#21262d',
-                        borderRadius: '4px',
-                        border: '1px solid #30363d'
-                      }}>
-                        {project.lines} LOC
-                      </span>
-                      <span style={{ 
-                        fontSize: '11px', 
-                        color: '#7d8590',
-                        padding: '4px 8px',
-                        background: '#21262d',
-                        borderRadius: '4px',
-                        border: '1px solid #30363d'
-                      }}>
-                        {project.commits} commits
-                      </span>
-                    </div>
-                  </div>
-                  <p className="card-description">
-                    {project.description}
-                  </p>
-                  <div style={{ 
-                    fontSize: '11px', 
-                    color: '#238636', 
-                    fontFamily: 'JetBrains Mono, monospace',
-                    marginTop: '12px'
-                  }}>
-                    {project.status}
-                  </div>
-                </header>
-                
-                <div className="card-section">
-                  <h4 className="card-section-title">Core Features</h4>
-                  <ul className="features-list">
-                    {project.features.map((feature, i) => (
-                      <li key={i}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="card-section">
-                  <h4 className="card-section-title">Technology Stack</h4>
-                  <div className="tech-grid">
-                    {project.tech.map((tech, i) => (
-                      <span key={i} className="tech-badge">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                <footer className="card-footer">
-                  <a href={project.github} className="link">
-                    <Github size={14} />
-                    <span>source_code</span>
-                  </a>
-                  
-                  <a href={project.demo} className="link">
-                    <ExternalLink size={14} />
-                    <span>live_demo</span>
-                  </a>
-                </footer>
-              </article>
-            ))}
-          </div>
-
-          {/* Additional Projects Teaser */}
-          <div className="code-block" style={{ marginTop: '32px', textAlign: 'center' }}>
-            <code style={{ color: '#7d8590' }}>// More projects loading...</code><br/>
-            <code style={{ color: '#58a6ff' }}>git log --oneline | head -5</code><br/>
-            <code style={{ color: '#7d8590' }}>// Check my GitHub for the complete commit history</code>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="section">
-        <div className="container">
-          <div className="section-header">
-            <h2 style={{ marginBottom: '20px' }}>Initialize Connection</h2>
-            <div>
-              <p className="text-large">
-                <code>if (you.hasInterestingProject() || you.wantsToCollaborate()) {"{"}</code><br/>
-                &nbsp;&nbsp;<code>me.respondWith("Let's build something awesome!");</code><br/>
-                <code>{"}"}</code>
-              </p>
-              <p className="text-muted" style={{ marginTop: '16px' }}>
-                Always excited to discuss new opportunities, collaborate on innovative projects, 
-                or just geek out about the latest in tech. My inbox is always open for fellow developers, 
-                potential clients, or anyone who wants to talk about why vim is superior to emacs.
-              </p>
-            </div>
-          </div>
-          
-          <div className="contact-grid">
-            <a href="mailto:khakhashubham@gmail.com" className="contact-card">
-              <div className="contact-card-header">
-                <Mail className="contact-card-icon" />
-              </div>
-              <div className="contact-card-content">
-                <h3 className="contact-card-title">email</h3>
-                <p className="contact-card-description">khakhashubham@gmail.com</p>
-              </div>
-              <ArrowUpRight className="contact-card-arrow" />
+        {/* Contact */}
+        <section>
+          <span style={{ 
+            display: 'inline-block',
+            background: theme.badgeBg,
+            border: `1px solid ${theme.border}`,
+            borderRadius: '4px',
+            padding: '4px 10px',
+            fontSize: '12px',
+            color: theme.textMuted,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            marginBottom: '20px'
+          }}>
+            Contact
+          </span>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '12px'
+          }}>
+            <a
+              href="mailto:khakhashubham@gmail.com"
+              style={{
+                color: theme.link,
+                textDecoration: 'underline',
+                textDecorationColor: 'transparent',
+                fontSize: '15px',
+                transition: 'text-decoration-color 0.2s',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                width: 'fit-content'
+              }}
+              onMouseEnter={(e) => e.target.style.textDecorationColor = theme.linkHover}
+              onMouseLeave={(e) => e.target.style.textDecorationColor = 'transparent'}
+            >
+              <Mail size={16} />
+              khakhashubham@gmail.com
             </a>
-
-            <a href="https://x.com/ShubhamKhakha" className="contact-card">
-              <div className="contact-card-header">
-                <Twitter className="contact-card-icon" />
-              </div>
-              <div className="contact-card-content">
-                <h3 className="contact-card-title">twitter</h3>
-                <p className="contact-card-description">@ShubhamKhakha</p>
-              </div>
-              <ArrowUpRight className="contact-card-arrow" />
+            <a
+              href="https://github.com/shubhook"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: theme.link,
+                textDecoration: 'underline',
+                textDecorationColor: 'transparent',
+                fontSize: '15px',
+                transition: 'text-decoration-color 0.2s',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                width: 'fit-content'
+              }}
+              onMouseEnter={(e) => e.target.style.textDecorationColor = theme.linkHover}
+              onMouseLeave={(e) => e.target.style.textDecorationColor = 'transparent'}
+            >
+              <Github size={16} />
+              GitHub
             </a>
-            
-            <a href="https://github.com/shubhook" className="contact-card">
-              <div className="contact-card-header">
-                <Github className="contact-card-icon" />
-              </div>
-              <div className="contact-card-content">
-                <h3 className="contact-card-title">github</h3>
-                <p className="contact-card-description">@shubhook</p>
-              </div>
-              <ArrowUpRight className="contact-card-arrow" />
+            <a
+              href="https://www.linkedin.com/in/shubham-khakha/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: theme.link,
+                textDecoration: 'underline',
+                textDecorationColor: 'transparent',
+                fontSize: '15px',
+                transition: 'text-decoration-color 0.2s',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                width: 'fit-content'
+              }}
+              onMouseEnter={(e) => e.target.style.textDecorationColor = theme.linkHover}
+              onMouseLeave={(e) => e.target.style.textDecorationColor = 'transparent'}
+            >
+              <Linkedin size={16} />
+              LinkedIn
             </a>
-
-            <a href="https://www.linkedin.com/in/shubham-khakha/" className="contact-card">
-              <div className="contact-card-header">
-                <Linkedin className="contact-card-icon" />
-              </div>
-              <div className="contact-card-content">
-                <h3 className="contact-card-title">linkedin</h3>
-                <p className="contact-card-description">Professional network</p>
-              </div>
-              <ArrowUpRight className="contact-card-arrow" />
+            <a
+              href="https://x.com/ShubhamKhakha"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: theme.link,
+                textDecoration: 'underline',
+                textDecorationColor: 'transparent',
+                fontSize: '15px',
+                transition: 'text-decoration-color 0.2s',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                width: 'fit-content'
+              }}
+              onMouseEnter={(e) => e.target.style.textDecorationColor = theme.linkHover}
+              onMouseLeave={(e) => e.target.style.textDecorationColor = 'transparent'}
+            >
+              <Twitter size={16} />
+              Twitter
             </a>
           </div>
+        </section>
+      </div>
 
-          {/* Terminal-style availability */}
-          <div className="code-block" style={{ marginTop: '32px' }}>
-            <code style={{ color: '#7d8590' }}>$ curl -s api.shubham.dev/status</code><br/>
-            <code>{"{"}</code><br/>
-            &nbsp;&nbsp;<code style={{ color: '#58a6ff' }}>"status"</code>: <code style={{ color: '#00ff41' }}>"available_for_hire"</code>,<br/>
-            &nbsp;&nbsp;<code style={{ color: '#58a6ff' }}>"response_time"</code>: <code style={{ color: '#00ff41' }}>"&lt; 24 hours"</code>,<br/>
-            &nbsp;&nbsp;<code style={{ color: '#58a6ff' }}>"timezone"</code>: <code style={{ color: '#00ff41' }}>"UTC+5:30"</code>,<br/>
-            &nbsp;&nbsp;<code style={{ color: '#58a6ff' }}>"coffee_level"</code>: <code style={{ color: '#f0883e' }}>{Math.floor(Math.random() * 100)}%</code><br/>
-            <code>{"}"}</code>
-          </div>
-        </div>
-      </section>
+      {/* Floating Bottom Bar */}
+      <div style={{
+        position: 'fixed',
+        bottom: '24px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        background: theme.hoverBg,
+        border: `1px solid ${theme.border}`,
+        borderRadius: '12px',
+        padding: '12px 20px',
+        display: 'flex',
+        gap: '20px',
+        alignItems: 'center',
+        boxShadow: darkMode ? '0 4px 20px rgba(0, 0, 0, 0.5)' : '0 4px 20px rgba(0, 0, 0, 0.1)',
+        zIndex: 1000
+      }}>
+        <a
+          href="https://github.com/shubhook"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: theme.text,
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            transition: 'opacity 0.2s',
+            opacity: 0.7
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+        >
+          <Github size={20} />
+        </a>
+        
+        <a
+          href="https://www.linkedin.com/in/shubham-khakha/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: theme.text,
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            transition: 'opacity 0.2s',
+            opacity: 0.7
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+        >
+          <Linkedin size={20} />
+        </a>
+        
+        <a
+          href="https://x.com/ShubhamKhakha"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: theme.text,
+            textDecoration: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            transition: 'opacity 0.2s',
+            opacity: 0.7
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+        >
+          <Twitter size={20} />
+        </a>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-text">
-              Built with ❤️ and way too much caffeine
-            </div>
-            <div className="footer-text">
-              Last updated: {currentTime.toLocaleDateString()}
-            </div>
-          </div>
-        </div>
-      </footer>
+        <div style={{
+          width: '1px',
+          height: '20px',
+          background: theme.border
+        }} />
+        
+        <button
+          onClick={() => setDarkMode(!darkMode)}
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: theme.text,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            padding: '0',
+            transition: 'opacity 0.2s',
+            opacity: 0.7
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.opacity = '1'}
+          onMouseLeave={(e) => e.currentTarget.style.opacity = '0.7'}
+        >
+          {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+      </div>
     </div>
   );
 };
