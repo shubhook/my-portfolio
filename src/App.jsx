@@ -109,7 +109,7 @@ const Portfolio = () => {
             letterSpacing: '0.5px',
             marginBottom: '24px'
           }}>
-            Projects
+            Cool Projects
           </span>
           
           {projects.map((project, idx) => (
