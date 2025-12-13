@@ -29,7 +29,7 @@ const Portfolio = () => {
   const projects = [
     {
       title: "skillsync.ai",
-      description: "A web platform that matches developers with suitable projects using AI-powered semantic analysis. Users input their skills and a project description; Google Gemini analyzes for compatibility and suggests matches. What I learned: Handling API rate limits, prompt engineering for accurate AI responses, full-stack data flow from frontend to DB.",
+      description: "A web platform that matches developers with suitable projects using AI-powered semantic analysis. Users input their skills and a project description; Google Gemini analyzes for compatibility and suggests matches. ",
       tech: ["Node.js", "Express", "MongoDB", "Google Gemini AI", "REST API"],
       github: "https://github.com/shubhook/skillsync.ai",
       demo: "https://skillsync-ai-one.vercel.app"
