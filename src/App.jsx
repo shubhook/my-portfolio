@@ -29,7 +29,7 @@ const Portfolio = () => {
   const projects = [
     {
       title: "skillsync.ai",
-      description: "Platform matching developers with projects using ML. Built RESTful API handling 1000+ req/min with Node.js/Express. Integrated Google Gemini AI for semantic analysis. MongoDB schema with indexed queries averaging 50ms response time.",
+      description: "A web platform that matches developers with suitable projects using AI-powered semantic analysis. Users input their skills and a project description; Google Gemini analyzes for compatibility and suggests matches. What I learned: Handling API rate limits, prompt engineering for accurate AI responses, full-stack data flow from frontend to DB.",
       tech: ["Node.js", "Express", "MongoDB", "Google Gemini AI", "REST API"],
       github: "https://github.com/shubhook/skillsync.ai",
       demo: "https://skillsync-ai-one.vercel.app"
@@ -61,7 +61,7 @@ const Portfolio = () => {
       }}>
         {/* About */}
         <section style={{ marginBottom: '60px' }}>
-          <span style={{ 
+          <span style={{
             display: 'inline-block',
             background: theme.badgeBg,
             border: `1px solid ${theme.border}`,
@@ -76,27 +76,27 @@ const Portfolio = () => {
           }}>
             About
           </span>
-          <h1 style={{ 
-            fontSize: '32px', 
-            fontWeight: 600, 
+          <h1 style={{
+            fontSize: '32px',
+            fontWeight: 600,
             margin: '0 0 20px 0',
             letterSpacing: '-0.02em'
           }}>
             Shubham Khakha
           </h1>
-          <p style={{ 
-            color: theme.textMuted, 
+          <p style={{
+            color: theme.textMuted,
             margin: 0,
             textAlign: 'justify',
             fontSize: '15px'
           }}>
-            Building scalable backend systems and APIs. I focus on distributed systems, databases, and performance optimization. Currently exploring AI integration in production environments and working on developer tools that solve real problems.
+            Shipping useful apps.
           </p>
         </section>
 
         {/* Projects */}
         <section style={{ marginBottom: '60px' }}>
-          <span style={{ 
+          <span style={{
             display: 'inline-block',
             background: theme.badgeBg,
             border: `1px solid ${theme.border}`,
@@ -111,9 +111,9 @@ const Portfolio = () => {
           }}>
             Cool Projects
           </span>
-          
+
           {projects.map((project, idx) => (
-            <div 
+            <div
               key={idx}
               style={{
                 background: theme.cardBg,
@@ -123,16 +123,16 @@ const Portfolio = () => {
                 marginBottom: '20px'
               }}
             >
-              <h3 style={{ 
-                fontSize: '18px', 
+              <h3 style={{
+                fontSize: '18px',
                 fontWeight: 600,
                 margin: '0 0 12px 0'
               }}>
                 {project.title}
               </h3>
-              
-              <p style={{ 
-                color: theme.textMuted, 
+
+              <p style={{
+                color: theme.textMuted,
                 margin: '0 0 16px 0',
                 fontSize: '15px',
                 lineHeight: '1.6',
@@ -221,7 +221,7 @@ const Portfolio = () => {
 
         {/* Stack */}
         <section style={{ marginBottom: '60px' }}>
-          <span style={{ 
+          <span style={{
             display: 'inline-block',
             background: theme.badgeBg,
             border: `1px solid ${theme.border}`,
@@ -236,7 +236,7 @@ const Portfolio = () => {
           }}>
             Tech Stack
           </span>
-          
+
           <div style={{
             background: theme.cardBg,
             border: `1px solid ${theme.border}`,
@@ -284,7 +284,7 @@ const Portfolio = () => {
 
         {/* Contact */}
         <section>
-          <span style={{ 
+          <span style={{
             display: 'inline-block',
             background: theme.badgeBg,
             border: `1px solid ${theme.border}`,
@@ -423,7 +423,7 @@ const Portfolio = () => {
         >
           <Github size={20} />
         </a>
-        
+
         <a
           href="https://www.linkedin.com/in/shubham-khakha/"
           target="_blank"
@@ -441,7 +441,7 @@ const Portfolio = () => {
         >
           <Linkedin size={20} />
         </a>
-        
+
         <a
           href="https://x.com/ShubhamKhakha"
           target="_blank"
@@ -465,7 +465,7 @@ const Portfolio = () => {
           height: '20px',
           background: theme.border
         }} />
-        
+
         <button
           onClick={() => setDarkMode(!darkMode)}
           style={{
