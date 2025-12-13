@@ -443,7 +443,7 @@ const Portfolio = () => {
         </a>
 
         <a
-          href="https://x.com/ShubhamKhakha"
+          href="https://x.com/khakha_x"
           target="_blank"
           rel="noopener noreferrer"
           style={{
