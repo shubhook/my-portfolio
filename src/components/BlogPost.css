@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+.blog-post {
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 120px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.blog-post.dark {
+  background: #0a0a0a;
+  color: #e8e8e8;
+}
+
+.blog-post.light {
+  background: #fafaf9;
+  color: #1a1a1a;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  margin-bottom: 40px;
+}
+
+.blog-post.dark .back-link {
+  color: #e8e8e8;
+}
+
+.blog-post.light .back-link {
+  color: #1a1a1a;
+}
+
+.back-link:hover {
+  opacity: 1;
+}
+
+.post-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.post-header {
+  margin-bottom: 32px;
+}
+
+.post-header .post-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-divider {
+  opacity: 0.3;
+}
+
+.post-divider {
+  height: 1px;
+  margin: 32px 0;
+}
+
+.blog-post.dark .post-divider {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.blog-post.light .post-divider {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.markdown-content {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.markdown-content h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 48px 0 20px 0;
+  line-height: 1.3;
+}
+
+.markdown-content h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 40px 0 16px 0;
+  line-height: 1.3;
+}
+
+.markdown-content h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 32px 0 12px 0;
+  line-height: 1.4;
+}
+
+.markdown-content p {
+  margin: 0 0 20px 0;
+  text-align: justify;
+}
+
+.markdown-content code {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.blog-post.dark .markdown-content code {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e8e8e8;
+}
+
+.blog-post.light .markdown-content code {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1a1a1a;
+}
+
+.markdown-content pre {
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 24px 0;
+}
+
+.blog-post.dark .markdown-content pre {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.blog-post.light .markdown-content pre {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.markdown-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid;
+  padding-left: 20px;
+  margin: 24px 0;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.blog-post.dark .markdown-content blockquote {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.blog-post.light .markdown-content blockquote {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 24px;
+  margin: 20px 0;
+}
+
+.markdown-content li {
+  margin: 8px 0;
+}
+
+.loading,
+.not-found {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.loading {
+  font-size: 15px;
+  opacity: 0.5;
+}
+
+.not-found h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.not-found p {
+  font-size: 15px;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .post-header .post-title {
+    font-size: 32px;
+  }
+
+  .markdown-content {
+    font-size: 15px;
+  }
+
+  .markdown-content h1 {
+    font-size: 28px;
+  }
+
+  .markdown-content h2 {
+    font-size: 22px;
+  }
+
+  .markdown-content h3 {
+    font-size: 18px;
+  }
+}

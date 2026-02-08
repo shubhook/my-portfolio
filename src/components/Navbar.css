@@ -1,0 +1,150 @@
+.navbar {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.navbar-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.navbar-hidden {
+  transform: translateX(-50%) translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar.dark .navbar-content {
+  background: rgba(17, 17, 17, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.navbar.light .navbar-content {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-links a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+  opacity: 0.7;
+}
+
+.navbar.dark .navbar-links a {
+  color: #e8e8e8;
+}
+
+.navbar.light .navbar-links a {
+  color: #1a1a1a;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+  opacity: 1;
+}
+
+.navbar-divider {
+  width: 1px;
+  height: 20px;
+}
+
+.navbar.dark .navbar-divider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.navbar.light .navbar-divider {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.navbar-social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar-social a {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+  opacity: 0.7;
+}
+
+.navbar.dark .navbar-social a {
+  color: #e8e8e8;
+}
+
+.navbar.light .navbar-social a {
+  color: #1a1a1a;
+}
+
+.navbar-social a:hover {
+  opacity: 1;
+}
+
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  transition: opacity 0.2s ease;
+  opacity: 0.7;
+}
+
+.navbar.dark .theme-toggle {
+  color: #e8e8e8;
+}
+
+.navbar.light .theme-toggle {
+  color: #1a1a1a;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .navbar-content {
+    gap: 12px;
+    padding: 10px 16px;
+  }
+
+  .navbar-links {
+    gap: 12px;
+  }
+
+  .navbar-links a {
+    font-size: 13px;
+  }
+
+  .navbar-social {
+    gap: 8px;
+  }
+}
