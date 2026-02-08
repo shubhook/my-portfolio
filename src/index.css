@@ -25,19 +25,19 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(255, 107, 0, 0.2);
+  background: rgba(255, 107, 0, 0.25);
   color: inherit;
 }
 
 ::-moz-selection {
-  background: rgba(255, 107, 0, 0.2);
+  background: rgba(255, 107, 0, 0.25);
   color: inherit;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -46,14 +46,14 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* Common classes */
+/* Common classes - using 8px grid system */
 .container {
   max-width: 880px;
   margin: 0 auto;
@@ -61,55 +61,65 @@ body {
 }
 
 .section {
-  margin-bottom: 64px;
+  margin-bottom: 96px;
 }
 
 .section-badge {
   display: inline-block;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 6px 12px;
+  letter-spacing: 1.2px;
+  padding: 8px 16px;
   border-radius: 6px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .section-divider {
   height: 1px;
-  margin: 64px 0;
+  margin: 80px 0;
 }
 
 .main-heading {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 48px;
+  font-size: 72px;
   font-weight: 700;
-  letter-spacing: -0.03em;
-  margin: 0 0 16px 0;
+  letter-spacing: -0.04em;
+  margin: 0 0 20px 0;
   line-height: 1.1;
 }
 
 .subtitle {
-  font-size: 16px;
-  opacity: 0.6;
+  font-size: 17px;
+  opacity: 0.7;
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 60px 20px;
+    padding: 48px 20px;
   }
 
   .main-heading {
-    font-size: 36px;
+    font-size: 48px;
+    letter-spacing: -0.03em;
+  }
+
+  .subtitle {
+    font-size: 16px;
   }
 
   .section {
-    margin-bottom: 48px;
+    margin-bottom: 64px;
   }
 
   .section-divider {
-    margin: 48px 0;
+    margin: 64px 0;
+  }
+
+  .section-badge {
+    font-size: 11px;
+    padding: 6px 12px;
   }
 }
