@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import './Blog.css';
 
 const Blog = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -18,11 +18,11 @@ const Blog = () => {
         for (const path in postsContext) {
           const content = await postsContext[path]();
           const slug = path.split('/').pop().replace('.md', '');
-          
+
           // Simple frontmatter parsing
           const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
           const match = content.match(frontmatterRegex);
-          
+
           if (match) {
             const frontmatter = {};
             const lines = match[1].split('\n');

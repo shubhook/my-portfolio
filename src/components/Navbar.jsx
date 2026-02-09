@@ -9,7 +9,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
-    
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setVisible(currentScrollY < lastScrollY || currentScrollY < 100);
@@ -27,13 +27,8 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       <div className="navbar-content">
         <div className="navbar-links">
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>
-          <HomeIcon size={16}/>
+            <HomeIcon size={16} />
           </Link>
-        </div>
-
-        <div className="navbar-divider" />
-
-        <div className="navbar-social">
           <Link to="/blog" className={location.pathname.startsWith('/blog') ? 'active' : ''}>
             <BookOpen size={16} />
           </Link>
@@ -42,12 +37,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           </a>
           <a href="https://x.com/khakha_x" target="_blank" rel="noopener noreferrer">
             <Twitter size={16} />
-          </a>
-          <a href={resumeLink} target="_blank" rel="noopener noreferrer">
-            <FileText size={16} />
-          </a>
-          <a href="https://www.linkedin.com/in/shubham-khakha/" target="_blank" rel="noopener noreferrer">
-            <Linkedin size={16} />
           </a>
         </div>
 

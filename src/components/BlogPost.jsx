@@ -5,7 +5,7 @@ import Navbar from './Navbar';
 import './BlogPost.css';
 
 const BlogPost = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const { slug } = useParams();
@@ -14,17 +14,17 @@ const BlogPost = () => {
     const loadPost = async () => {
       try {
         const postsContext = import.meta.glob('../blogs/*.md', { as: 'raw' });
-        
+
         for (const path in postsContext) {
           const postSlug = path.split('/').pop().replace('.md', '');
-          
+
           if (postSlug === slug) {
             const content = await postsContext[path]();
-            
+
             // Simple frontmatter parsing
             const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
             const match = content.match(frontmatterRegex);
-            
+
             if (match) {
               const frontmatter = {};
               const lines = match[1].split('\n');

@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import './Home.css';
 
 const Home = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const projects = [
     {
