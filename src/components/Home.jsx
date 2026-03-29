@@ -23,12 +23,16 @@ const Home = () => {
     }
   ];
 
-  const skills = {
-    "Backend": ["Node", "Express", "REST APIs"],
-    "Databases": ["MongoDB", "Postgres"],
-    "Languages": ["JavaScript", "TypeScript", "Python", "C/C++"],
-    "Tools": ["Git", "Linux", "Prisma"]
-  };
+  const experiments = [
+    {
+      title: "example-experiment",
+      description: "A short description of what this experiment does and what you were exploring when you built it.",
+      tech: ["React", "Node.js"],
+      github: "https://github.com/shubhook",
+      demo: null,
+      vibecoded: false
+    }
+  ];
 
   return (
     <div className={`home ${darkMode ? 'dark' : 'light'}`}>
@@ -76,19 +80,38 @@ const Home = () => {
 
         <div className="section-divider" />
 
-        {/* Tech Stack Section */}
+        {/* Experiments Section */}
         <section className="section">
-          <span className="section-badge">Tech Stack</span>
-          <div className="skills-card">
-            {Object.entries(skills).map(([category, techs], idx) => (
-              <div key={category} className="skill-category">
-                <h3 className="skill-category-title">{category}</h3>
-                <div className="skill-tags">
-                  {techs.map((tech, i) => (
-                    <span key={i} className="skill-tag">{tech}</span>
+          <span className="section-badge">Experiments</span>
+          <div className="projects-grid">
+            {experiments.map((experiment, idx) => (
+              <div key={idx} className="project-card">
+                <div className="experiment-header">
+                  <h3 className="project-title">{experiment.title}</h3>
+                  <span className={`vibe-badge ${experiment.vibecoded ? 'vibecoded' : 'human-built'}`}>
+                    {experiment.vibecoded ? 'Vibecoded' : 'Built by Human'}
+                  </span>
+                </div>
+                <p className="project-description">{experiment.description}</p>
+
+                <div className="tech-stack">
+                  {experiment.tech.map((tech, i) => (
+                    <span key={i} className="tech-badge">{tech}</span>
                   ))}
                 </div>
-                {idx < Object.entries(skills).length - 1 && <div className="skill-divider" />}
+
+                <div className="project-links">
+                  <a href={experiment.github} target="_blank" rel="noopener noreferrer">
+                    <Github size={16} />
+                    Source Code
+                  </a>
+                  {experiment.demo && (
+                    <a href={experiment.demo} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink size={16} />
+                      Live Demo
+                    </a>
+                  )}
+                </div>
               </div>
             ))}
           </div>

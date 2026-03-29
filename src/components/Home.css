@@ -160,7 +160,7 @@
   line-height: 1.7;
   opacity: 0.7;
   margin: 0 0 20px 0;
-  text-align: justify;
+  text-align: left;
 }
 
 .tech-stack {
@@ -227,79 +227,51 @@
   opacity: 1;
 }
 
-/* Skills Card */
-.skills-card {
-  border-radius: 12px;
-  padding: 28px;
-}
-
-.home.dark .skills-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.home.light .skills-card {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.skill-category {
-  padding: 20px 0;
-}
-
-.skill-category:first-child {
-  padding-top: 0;
-}
-
-.skill-category:last-child {
-  padding-bottom: 0;
-}
-
-.skill-category-title {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  opacity: 0.5;
-  margin: 0 0 12px 0;
-}
-
-.skill-tags {
+/* Experiment Header */
+.experiment-header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-.skill-tag {
-  font-size: 13px;
-  font-weight: 500;
-  padding: 6px 12px;
+.experiment-header .project-title {
+  margin: 0;
+}
+
+.vibe-badge {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
   border-radius: 5px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
 }
 
-.home.dark .skill-tag {
-  background: rgba(255, 255, 255, 0.05);
-  color: #e8e8e8;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.vibe-badge.vibecoded {
+  background: rgba(139, 92, 246, 0.1);
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
-.home.light .skill-tag {
-  background: rgba(0, 0, 0, 0.03);
-  color: #1a1a1a;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+.vibe-badge.human-built {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.2);
 }
 
-.skill-divider {
-  height: 1px;
-  margin: 20px 0 0 0;
+.home.light .vibe-badge.vibecoded {
+  background: rgba(139, 92, 246, 0.08);
+  color: #7c3aed;
+  border: 1px solid rgba(139, 92, 246, 0.15);
 }
 
-.home.dark .skill-divider {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.home.light .skill-divider {
-  background: rgba(0, 0, 0, 0.05);
+.home.light .vibe-badge.human-built {
+  background: rgba(22, 163, 74, 0.08);
+  color: #16a34a;
+  border: 1px solid rgba(22, 163, 74, 0.15);
 }
 
 /* Contact Links */
