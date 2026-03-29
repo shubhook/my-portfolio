@@ -1,12 +1,9 @@
-import React, { useState, useEffect, createContext, useContext, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './components/Home';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
-
-export const ThemeContext = createContext();
-
-export const useTheme = () => useContext(ThemeContext);
+import { ThemeContext } from './context/ThemeContext';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();

@@ -1,32 +1,46 @@
-import React from 'react';
 import { Github, Mail, Linkedin, Twitter, ExternalLink } from 'lucide-react';
 import Navbar from './Navbar';
-import { useTheme } from '../App';
+import { useTheme } from '../context/ThemeContext';
+import { about, contact, projects, experiments } from '../data/portfolio';
 import './Home.css';
+
+const ProjectCard = ({ project, isExperiment }) => (
+  <div className="project-card">
+    {isExperiment ? (
+      <div className="experiment-header">
+        <h3 className="project-title">{project.title}</h3>
+        <span className={`vibe-badge ${project.vibecoded ? 'vibecoded' : 'human-built'}`}>
+          {project.vibecoded ? 'Vibecoded' : 'Built by Human'}
+        </span>
+      </div>
+    ) : (
+      <h3 className="project-title">{project.title}</h3>
+    )}
+    <p className="project-description">{project.description}</p>
+
+    <div className="tech-stack">
+      {project.tech.map((tech) => (
+        <span key={tech} className="tech-badge">{tech}</span>
+      ))}
+    </div>
+
+    <div className="project-links">
+      <a href={project.github} target="_blank" rel="noopener noreferrer">
+        <Github size={16} />
+        Source Code
+      </a>
+      {project.demo && (
+        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
+          <ExternalLink size={16} />
+          Live Demo
+        </a>
+      )}
+    </div>
+  </div>
+);
 
 const Home = () => {
   const { darkMode } = useTheme();
-
-  const projects = [
-    {
-      title: "skillsync.ai",
-      description: "A web platform that matches developers with suitable projects using AI-powered semantic analysis. Users input their skills and a project description; Google Gemini analyzes for compatibility and suggests matches.",
-      tech: ["Node.js", "Express", "Google Gemini AI", "REST API"],
-      github: "https://github.com/shubhook/skillsync.ai",
-      demo: "https://skillsync-ai-one.vercel.app"
-    }
-  ];
-
-  const experiments = [
-    {
-      title: "InvestRight",
-      description: "A autonomus Trading Bot built to trade on your behalf.",
-      tech: ["React", "Node.js"],
-      github: "https://github.com/shubhook/InvestRight.git",
-      demo: null,
-      vibecoded: true
-    }
-  ];
 
   return (
     <div className={`home ${darkMode ? 'dark' : 'light'}`}>
@@ -34,9 +48,9 @@ const Home = () => {
         {/* About Section */}
         <section className="section">
           <span className="section-badge">About</span>
-          <h1 className="main-heading">Hello Ji, I'm Khakha</h1>
+          <h1 className="main-heading">{about.greeting}</h1>
           <p className="subtitle">
-            I build software. <b>College</b> didn't teach me that.
+            {about.subtitle} <strong>{about.subtitleEmphasis}</strong>{about.subtitleSuffix}
           </p>
         </section>
 
@@ -46,30 +60,8 @@ const Home = () => {
         <section className="section">
           <span className="section-badge">Cool Projects</span>
           <div className="projects-grid">
-            {projects.map((project, idx) => (
-              <div key={idx} className="project-card">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
-
-                <div className="tech-stack">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="tech-badge">{tech}</span>
-                  ))}
-                </div>
-
-                <div className="project-links">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Github size={16} />
-                    Source Code
-                  </a>
-                  {project.demo && (
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
-                      <ExternalLink size={16} />
-                      Live Demo
-                    </a>
-                  )}
-                </div>
-              </div>
+            {projects.map((project) => (
+              <ProjectCard key={project.title} project={project} />
             ))}
           </div>
         </section>
@@ -80,35 +72,8 @@ const Home = () => {
         <section className="section">
           <span className="section-badge">Experiments</span>
           <div className="projects-grid">
-            {experiments.map((experiment, idx) => (
-              <div key={idx} className="project-card">
-                <div className="experiment-header">
-                  <h3 className="project-title">{experiment.title}</h3>
-                  <span className={`vibe-badge ${experiment.vibecoded ? 'vibecoded' : 'human-built'}`}>
-                    {experiment.vibecoded ? 'Vibecoded' : 'Built by Human'}
-                  </span>
-                </div>
-                <p className="project-description">{experiment.description}</p>
-
-                <div className="tech-stack">
-                  {experiment.tech.map((tech, i) => (
-                    <span key={i} className="tech-badge">{tech}</span>
-                  ))}
-                </div>
-
-                <div className="project-links">
-                  <a href={experiment.github} target="_blank" rel="noopener noreferrer">
-                    <Github size={16} />
-                    Source Code
-                  </a>
-                  {experiment.demo && (
-                    <a href={experiment.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
-                      <ExternalLink size={16} />
-                      Live Demo
-                    </a>
-                  )}
-                </div>
-              </div>
+            {experiments.map((experiment) => (
+              <ProjectCard key={experiment.title} project={experiment} isExperiment />
             ))}
           </div>
         </section>
@@ -119,19 +84,19 @@ const Home = () => {
         <section className="section">
           <span className="section-badge">Contact</span>
           <div className="contact-links">
-            <a href="mailto:khakhashubham@gmail.com">
+            <a href={`mailto:${contact.email}`}>
               <Mail size={16} />
-              khakhashubham@gmail.com
+              {contact.email}
             </a>
-            <a href="https://www.linkedin.com/in/shubham-khakha/" target="_blank" rel="noopener noreferrer">
+            <a href={contact.linkedin} target="_blank" rel="noopener noreferrer">
               <Linkedin size={16} />
               LinkedIn
             </a>
-            <a href="https://github.com/shubhook" target="_blank" rel="noopener noreferrer">
+            <a href={contact.github} target="_blank" rel="noopener noreferrer">
               <Github size={16} />
               GitHub
             </a>
-            <a href="https://x.com/khakha_x" target="_blank" rel="noopener noreferrer">
+            <a href={contact.twitter} target="_blank" rel="noopener noreferrer">
               <Twitter size={16} />
               Twitter
             </a>

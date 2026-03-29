@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Navbar from './Navbar';
-import { useTheme } from '../App';
+import { useTheme } from '../context/ThemeContext';
 import './BlogPost.css';
 
 const BlogPost = () => {

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Github, Twitter, Moon, Sun, BookOpen, HomeIcon } from 'lucide-react';
-import { useTheme } from '../App';
+import { useTheme } from '../context/ThemeContext';
 import './Navbar.css';
 
 const ACCENT_COLORS = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#C77DFF'];

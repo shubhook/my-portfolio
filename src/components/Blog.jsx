@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, ArrowRight } from 'lucide-react';
 import Navbar from './Navbar';
-import { useTheme } from '../App';
+import { useTheme } from '../context/ThemeContext';
 import './Blog.css';
 
 const stripMarkdown = (text) => {
