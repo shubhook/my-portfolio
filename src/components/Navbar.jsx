@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Github, Twitter, Moon, Sun, BookOpen, HomeIcon } from 'lucide-react';
 import { useTheme } from '../App';
 import './Navbar.css';
 
+const ACCENT_COLORS = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#C77DFF'];
+
 const Navbar = () => {
   const { darkMode, toggleDarkMode } = useTheme();
   const [visible, setVisible] = useState(true);
   const location = useLocation();
+  const navbarContentRef = useRef(null);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -22,9 +25,29 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const COUNT_KEY = 'navbar-load-count';
+    const COLOR_KEY = 'navbar-accent-color';
+
+    const count = parseInt(sessionStorage.getItem(COUNT_KEY) || '0') + 1;
+    sessionStorage.setItem(COUNT_KEY, String(count));
+
+    if (count % 7 === 0) {
+      const color = ACCENT_COLORS[Math.floor(Math.random() * ACCENT_COLORS.length)];
+      sessionStorage.setItem(COLOR_KEY, color);
+    } else {
+      sessionStorage.removeItem(COLOR_KEY);
+    }
+
+    const storedColor = sessionStorage.getItem(COLOR_KEY);
+    if (storedColor && navbarContentRef.current) {
+      navbarContentRef.current.style.setProperty('--dynamic-border', storedColor);
+    }
+  }, []);
+
   return (
     <nav className={`navbar ${visible ? 'navbar-visible' : 'navbar-hidden'} ${darkMode ? 'dark' : 'light'}`}>
-      <div className="navbar-content">
+      <div className="navbar-content" ref={navbarContentRef}>
         <div className="navbar-links">
           <Link
             to="/"

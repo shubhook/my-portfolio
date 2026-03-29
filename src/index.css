@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
+:root {
+  --coral:        #FF6B6B;
+  --yellow:       #FFD93D;
+  --mint:         #6BCB77;
+  --blue:         #4D96FF;
+  --purple:       #C77DFF;
+  --coral-muted:  rgba(255, 107, 107, 0.12);
+  --yellow-muted: rgba(255, 217, 61, 0.12);
+  --mint-muted:   rgba(107, 203, 119, 0.12);
+  --blue-muted:   rgba(77, 150, 255, 0.12);
+  --purple-muted: rgba(199, 125, 255, 0.12);
+}
+
 * {
   margin: 0;
   padding: 0;
