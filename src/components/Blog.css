@@ -6,84 +6,68 @@
   z-index: 1;
   padding-bottom: 120px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .blog.dark {
-  background: #0a0a0a;
-  color: #e8e8e8;
+  background: #0c0c0c;
+  color: #e0e0e0;
 }
 
 .blog.light {
-  background: #fafaf9;
-  color: #1a1a1a;
+  background: #f0eeeb;
+  color: #0d0d0d;
+}
+
+.blog.dark .section-badge {
+  background: transparent;
+  color: rgba(224, 224, 224, 0.45);
+  border: 1px solid #303030;
+}
+
+.blog.light .section-badge {
+  background: transparent;
+  color: rgba(13, 13, 13, 0.5);
+  border: 1px solid #1a1a1a;
 }
 
 .posts-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .post-card {
   display: block;
   padding: 28px;
-  border-radius: 12px;
+  border-radius: 0;
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
   position: relative;
-  overflow: hidden;
 }
 
 .blog.dark .post-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #e8e8e8;
+  background: #141414;
+  border: 1px solid #2e2e2e;
+  color: #e0e0e0;
 }
 
 .blog.light .post-card {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  color: #1a1a1a;
-}
-
-.post-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.blog.dark .post-card::before {
-  background: linear-gradient(135deg, rgba(255, 107, 0, 0.03), rgba(255, 140, 0, 0.03));
-}
-
-.blog.light .post-card::before {
-  background: linear-gradient(135deg, rgba(255, 140, 0, 0.05), rgba(255, 165, 0, 0.05));
-}
-
-.post-card:hover::before {
-  opacity: 1;
+  background: #ffffff;
+  border: 1px solid #1a1a1a;
+  color: #0d0d0d;
 }
 
 .post-card:hover {
-  transform: translateY(-2px);
+  transform: translate(-2px, -2px);
 }
 
 .blog.dark .post-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 4px 0 #2e2e2e;
 }
 
 .blog.light .post-card:hover {
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 4px 4px 0 #1a1a1a;
 }
 
 .post-card:hover .post-arrow {
@@ -110,7 +94,7 @@
 .post-arrow {
   flex-shrink: 0;
   opacity: 0.5;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   margin-top: 2px;
 }
 
@@ -126,7 +110,7 @@
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 .post-date {

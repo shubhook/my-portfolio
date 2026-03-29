@@ -1,9 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, createContext, useContext, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './components/Home';
 import Blog from './components/Blog';
 import BlogPost from './components/BlogPost';
-import StarryBackground from './components/StarryBackground';
+
+export const ThemeContext = createContext();
+
+export const useTheme = () => useContext(ThemeContext);
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -14,16 +17,28 @@ const ScrollToTop = () => {
 };
 
 const App = () => {
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? saved === 'true' : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
+
+  const toggleDarkMode = useCallback(() => setDarkMode(d => !d), []);
+
   return (
-    <Router>
-      <ScrollToTop />
-      <StarryBackground />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-      </Routes>
-    </Router>
+    <ThemeContext.Provider value={{ darkMode, toggleDarkMode }}>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+        </Routes>
+      </Router>
+    </ThemeContext.Provider>
   );
 };
 

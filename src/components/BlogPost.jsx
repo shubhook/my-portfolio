@@ -4,20 +4,14 @@ import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Navbar from './Navbar';
+import { useTheme } from '../App';
 import './BlogPost.css';
 
 const BlogPost = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved !== null ? saved === 'true' : true;
-  });
+  const { darkMode } = useTheme();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const { slug } = useParams();
-
-  useEffect(() => {
-    localStorage.setItem('darkMode', darkMode);
-  }, [darkMode]);
 
   useEffect(() => {
     const loadPost = async () => {
@@ -30,7 +24,6 @@ const BlogPost = () => {
           if (postSlug === slug) {
             const content = await postsContext[path]();
 
-            // Simple frontmatter parsing
             const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
             const match = content.match(frontmatterRegex);
 
@@ -73,7 +66,7 @@ const BlogPost = () => {
         <div className="container">
           <p className="loading">Loading...</p>
         </div>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Navbar />
       </div>
     );
   }
@@ -91,7 +84,7 @@ const BlogPost = () => {
             <p>The blog post you're looking for doesn't exist.</p>
           </div>
         </div>
-        <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+        <Navbar />
       </div>
     );
   }
@@ -130,7 +123,7 @@ const BlogPost = () => {
         </article>
       </div>
 
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Navbar />
     </div>
   );
 };

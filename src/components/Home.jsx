@@ -1,17 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Github, Mail, Linkedin, Twitter, ExternalLink } from 'lucide-react';
 import Navbar from './Navbar';
+import { useTheme } from '../App';
 import './Home.css';
 
 const Home = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved !== null ? saved === 'true' : true;
-  });
-
-  useEffect(() => {
-    localStorage.setItem('darkMode', darkMode);
-  }, [darkMode]);
+  const { darkMode } = useTheme();
 
   const projects = [
     {
@@ -42,7 +36,7 @@ const Home = () => {
           <span className="section-badge">About</span>
           <h1 className="main-heading">Hello Ji, I'm Khakha</h1>
           <p className="subtitle">
-            I build software. <b>College</b> didn’t teach me that.
+            I build software. <b>College</b> didn't teach me that.
           </p>
         </section>
 
@@ -68,10 +62,12 @@ const Home = () => {
                     <Github size={16} />
                     Source Code
                   </a>
-                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                    <ExternalLink size={16} />
-                    Live Demo
-                  </a>
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
+                      <ExternalLink size={16} />
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
@@ -106,7 +102,7 @@ const Home = () => {
                     Source Code
                   </a>
                   {experiment.demo && (
-                    <a href={experiment.demo} target="_blank" rel="noopener noreferrer">
+                    <a href={experiment.demo} target="_blank" rel="noopener noreferrer" className="demo-link">
                       <ExternalLink size={16} />
                       Live Demo
                     </a>
@@ -127,13 +123,13 @@ const Home = () => {
               <Mail size={16} />
               khakhashubham@gmail.com
             </a>
-            <a href="https://github.com/shubhook" target="_blank" rel="noopener noreferrer">
-              <Github size={16} />
-              GitHub
-            </a>
             <a href="https://www.linkedin.com/in/shubham-khakha/" target="_blank" rel="noopener noreferrer">
               <Linkedin size={16} />
               LinkedIn
+            </a>
+            <a href="https://github.com/shubhook" target="_blank" rel="noopener noreferrer">
+              <Github size={16} />
+              GitHub
             </a>
             <a href="https://x.com/khakha_x" target="_blank" rel="noopener noreferrer">
               <Twitter size={16} />
@@ -142,14 +138,14 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Footer with gradient */}
+        {/* Footer */}
         <footer className="footer">
           <div className="footer-gradient" />
           <p>Built with Love • For Myself</p>
         </footer>
       </div>
 
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Navbar />
     </div>
   );
 };

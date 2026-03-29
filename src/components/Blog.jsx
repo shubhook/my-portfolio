@@ -2,21 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Clock, ArrowRight } from 'lucide-react';
 import Navbar from './Navbar';
+import { useTheme } from '../App';
 import './Blog.css';
 
+const stripMarkdown = (text) => {
+  return text
+    .replace(/#{1,6}\s+/g, '')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/\*(.+?)\*/g, '$1')
+    .replace(/`(.+?)`/g, '$1')
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1')
+    .replace(/^\s*[-*+]\s+/gm, '')
+    .trim();
+};
+
 const Blog = () => {
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved !== null ? saved === 'true' : true;
-  });
+  const { darkMode } = useTheme();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('darkMode', darkMode);
-  }, [darkMode]);
-
-  useEffect(() => {
-    // Load blog posts
     const loadPosts = async () => {
       try {
         const postsContext = import.meta.glob('../blogs/*.md', { as: 'raw' });
@@ -26,7 +30,6 @@ const Blog = () => {
           const content = await postsContext[path]();
           const slug = path.split('/').pop().replace('.md', '');
 
-          // Simple frontmatter parsing
           const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
           const match = content.match(frontmatterRegex);
 
@@ -41,7 +44,7 @@ const Blog = () => {
             });
 
             const bodyContent = content.replace(frontmatterRegex, '').trim();
-            const firstParagraph = bodyContent.split('\n\n')[0];
+            const firstParagraph = stripMarkdown(bodyContent.split('\n\n')[0]);
             const excerpt = firstParagraph.length > 200
               ? firstParagraph.substring(0, 200) + '...'
               : firstParagraph;
@@ -57,7 +60,6 @@ const Blog = () => {
           }
         }
 
-        // Sort by date (newest first)
         postsData.sort((a, b) => {
           const dateA = new Date(a.date.split('/').reverse().join('-'));
           const dateB = new Date(b.date.split('/').reverse().join('-'));
@@ -111,7 +113,7 @@ const Blog = () => {
         )}
       </div>
 
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Navbar />
     </div>
   );
 };

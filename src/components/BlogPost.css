@@ -6,17 +6,29 @@
   z-index: 1;
   padding-bottom: 120px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .blog-post.dark {
-  background: #0a0a0a;
-  color: #e8e8e8;
+  background: #0c0c0c;
+  color: #e0e0e0;
 }
 
 .blog-post.light {
-  background: #fafaf9;
-  color: #1a1a1a;
+  background: #f0eeeb;
+  color: #0d0d0d;
+}
+
+.blog-post.dark .section-badge {
+  background: transparent;
+  color: rgba(224, 224, 224, 0.45);
+  border: 1px solid #303030;
+}
+
+.blog-post.light .section-badge {
+  background: transparent;
+  color: rgba(13, 13, 13, 0.5);
+  border: 1px solid #1a1a1a;
 }
 
 .back-link {
@@ -26,17 +38,17 @@
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
   margin-bottom: 40px;
 }
 
 .blog-post.dark .back-link {
-  color: #e8e8e8;
+  color: #e0e0e0;
 }
 
 .blog-post.light .back-link {
-  color: #1a1a1a;
+  color: #0d0d0d;
 }
 
 .back-link:hover {
@@ -66,7 +78,7 @@
   align-items: center;
   gap: 12px;
   font-size: 14px;
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 .meta-item {
@@ -85,11 +97,11 @@
 }
 
 .blog-post.dark .post-divider {
-  background: rgba(255, 255, 255, 0.08);
+  background: #222222;
 }
 
 .blog-post.light .post-divider {
-  background: rgba(0, 0, 0, 0.08);
+  background: #d0cdc9;
 }
 
 .markdown-content {
@@ -132,38 +144,41 @@
   font-family: 'Courier New', monospace;
   font-size: 14px;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 .blog-post.dark .markdown-content code {
-  background: rgba(255, 255, 255, 0.05);
-  color: #e8e8e8;
+  background: #1e1e1e;
+  border: 1px solid #2e2e2e;
+  color: #e0e0e0;
 }
 
 .blog-post.light .markdown-content code {
-  background: rgba(0, 0, 0, 0.05);
-  color: #1a1a1a;
+  background: #ebe8e4;
+  border: 1px solid #c8c5c0;
+  color: #0d0d0d;
 }
 
 .markdown-content pre {
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 0;
   overflow-x: auto;
   margin: 24px 0;
 }
 
 .blog-post.dark .markdown-content pre {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #141414;
+  border: 1px solid #2e2e2e;
 }
 
 .blog-post.light .markdown-content pre {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  border: 1px solid #1a1a1a;
 }
 
 .markdown-content pre code {
   background: none;
+  border: none;
   padding: 0;
 }
 
@@ -176,11 +191,11 @@
 }
 
 .blog-post.dark .markdown-content blockquote {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: #3a3a3a;
 }
 
 .blog-post.light .markdown-content blockquote {
-  border-color: rgba(0, 0, 0, 0.2);
+  border-color: #1a1a1a;
 }
 
 .markdown-content ul,
