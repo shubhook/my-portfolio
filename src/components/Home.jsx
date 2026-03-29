@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
-import { Github, Mail, Linkedin, Twitter, ExternalLink, Italic } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Github, Mail, Linkedin, Twitter, ExternalLink } from 'lucide-react';
 import Navbar from './Navbar';
 import './Home.css';
 
 const Home = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? saved === 'true' : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
 
   const projects = [
     {
@@ -105,7 +112,7 @@ const Home = () => {
               <Linkedin size={16} />
               LinkedIn
             </a>
-            <a href="https://x.com/ShubhamKhakha" target="_blank" rel="noopener noreferrer">
+            <a href="https://x.com/khakha_x" target="_blank" rel="noopener noreferrer">
               <Twitter size={16} />
               Twitter
             </a>

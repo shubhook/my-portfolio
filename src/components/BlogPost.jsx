@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import Navbar from './Navbar';
 import './BlogPost.css';
 
 const BlogPost = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? saved === 'true' : true;
+  });
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const { slug } = useParams();
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     const loadPost = async () => {
@@ -114,19 +123,9 @@ const BlogPost = () => {
           <div className="post-divider" />
 
           <div className="markdown-content">
-            {/* Simple markdown rendering - replace with proper markdown parser */}
-            {post.content.split('\n\n').map((paragraph, idx) => {
-              if (paragraph.startsWith('# ')) {
-                return <h1 key={idx}>{paragraph.replace('# ', '')}</h1>;
-              }
-              if (paragraph.startsWith('## ')) {
-                return <h2 key={idx}>{paragraph.replace('## ', '')}</h2>;
-              }
-              if (paragraph.startsWith('### ')) {
-                return <h3 key={idx}>{paragraph.replace('### ', '')}</h3>;
-              }
-              return <p key={idx}>{paragraph}</p>;
-            })}
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {post.content}
+            </ReactMarkdown>
           </div>
         </article>
       </div>

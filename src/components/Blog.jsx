@@ -5,8 +5,15 @@ import Navbar from './Navbar';
 import './Blog.css';
 
 const Blog = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? saved === 'true' : true;
+  });
   const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
+  }, [darkMode]);
 
   useEffect(() => {
     // Load blog posts
@@ -34,7 +41,10 @@ const Blog = () => {
             });
 
             const bodyContent = content.replace(frontmatterRegex, '').trim();
-            const excerpt = bodyContent.split('\n\n')[0].substring(0, 200) + '...';
+            const firstParagraph = bodyContent.split('\n\n')[0];
+            const excerpt = firstParagraph.length > 200
+              ? firstParagraph.substring(0, 200) + '...'
+              : firstParagraph;
             const readingTime = Math.ceil(bodyContent.split(' ').length / 200);
 
             postsData.push({
