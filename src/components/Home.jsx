@@ -25,12 +25,12 @@ const Home = () => {
 
   const experiments = [
     {
-      title: "example-experiment",
-      description: "A short description of what this experiment does and what you were exploring when you built it.",
+      title: "InvestRight",
+      description: "A autonomus Trading Bot built to trade on your behalf.",
       tech: ["React", "Node.js"],
-      github: "https://github.com/shubhook",
+      github: "https://github.com/shubhook/InvestRight.git",
       demo: null,
-      vibecoded: false
+      vibecoded: true
     }
   ];
 
